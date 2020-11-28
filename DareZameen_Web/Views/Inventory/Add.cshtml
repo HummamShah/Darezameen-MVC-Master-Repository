@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+<div ng-controller="InventoryCtrl" ng-init="AddInit()">
+
+
+    <div class="col-md-12"><h2>Add Inventory</h2></div>
+    <div class="row">
+        <form id="InventoryAddForm ">
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label>Agent</label>
+                    <select ng-model="Inventory.AgentId" class="form-control">
+                        <option value="1">Hummam</option>
+                        <option value="2">Umer</option>
+                        <option value="3">Maaz</option>
+                        <option value="4">Nanna</option>
+                        <option value="5">Postan</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label>Reference (Dummy)</label>
+                    <select ng-model="Inventory.ReferenceId" class="form-control">
+                        <option value="1">Hummam</option>
+                        <option value="2">Umer</option>
+                        <option value="3">Maaz</option>
+                        <option value="4">Nanna</option>
+                        <option value="5">Postan</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label>Reference Type </label>
+                    <select ng-model="Inventory.ReferenceType" class="form-control">
+                        <option value="0">Owner</option>
+                        <option value="1">Agent</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label>Category (dummy)</label>
+                    <select ng-model="Inventory.CategoryId" class="form-control">
+                        <option value="0">Commercial</option>
+                        <option value="1">Residential</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label>Property Type (dummy)</label>
+                    <select ng-model="Inventory.PropertyTypeId" class="form-control">
+                        <option value="0">House</option>
+                        <option value="1">Portian</option>
+                        <option value="2">Flat</option>
+                        <option value="3">Plant</option>
+                        <option value="4">Shop</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label>Size <small>(In Yards)</small></label>
+                    <input class="form-control" type="number" min="0" ng-model="Inventory.Size" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label>Demand <small>(Pkr)</small></label>
+                    <input class="form-control" type="number" min="0" ng-model="Inventory.Demand" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label>Address </label>
+                    <input class="form-control" type="text" ng-model="Inventory.Address" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label>ADPD (dummy)</label>
+                    <select ng-model="Inventory.SpecialLocationId" class="form-control">
+                        <option value="0">Scheme33</option>
+                        <option value="1">Bahria</option>
+                        <option value="2">DHA City</option>
+                        <option value="3">DHA</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+        <div class="row pull-right">
+            <button class="btn btn-primary" ng-click="AddInventory(Inventory)">Add</button>
+        </div>
+
+    </div>
+
+</div>

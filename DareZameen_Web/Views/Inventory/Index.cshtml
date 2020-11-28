@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-controller="InventoryCtrl" ng-init="initIndex()">
+   
+    <div class="row">
+        <div class="col-md-3">
+            <h2>Inventory List</h2>
+        </div>
+        <div class="col-md-9 ">
+             <a class="btn btn-primary pull-right" href="/Inventory/Add">Add</a>
+        </div>
+    </div>
+    <table class="table" width="100%">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Agent
+            </th>
+            <th>
+                Reference
+            </th>
+            <th>
+                Size
+            </th>
+            <th>
+                Demand
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Action
+            </th>
+
+        </tr>
+        <tr ng-repeat="inv in Inventories">
+            <td>
+                {{inv.Id}}
+            </td>
+            <td>
+                {{inv.AgentName}}
+            </td>
+            <td>
+                {{inv.RefenceName}}
+            </td>
+            <td>
+                {{inv.Size}}
+            </td>
+            <td>
+                {{inv.Demand}}
+            </td>
+            <td>
+                {{inv.CateogryName}}
+            </td>
+            <td>
+                {{inv.PropertyTypeName}}
+            </td>
+            <td>
+                {{inv.SpecialLocationName}}
+            </td>
+            <td>
+                {{inv.Address}}
+            </td>
+            <td>
+                <a href="/Inventory/Edit?Id={{inv.Id}}" title="Edit">E</a>
+                <a href="/Inventory/Details?Id={{inv.Id}}" title="Details">D</a>
+                <a href="/Inventory/Print?Id={{inv.Id}}" title="Print">P</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+

@@ -13,6 +13,32 @@
         <AssociationConnector Association="RealStateDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="RealStateDataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="RealStateDataModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="RealStateDataModel.Agent" Width="1.5" PointX="3.75" PointY="5.75" />
+        <EntityTypeShape EntityType="RealStateDataModel.AreaWisePrice" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="RealStateDataModel.AssignedLocation" Width="1.5" PointX="11" PointY="6.625" />
+        <EntityTypeShape EntityType="RealStateDataModel.Category" Width="1.5" PointX="0.75" PointY="16.25" />
+        <EntityTypeShape EntityType="RealStateDataModel.Images" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="RealStateDataModel.Inventory" Width="1.5" PointX="6" PointY="10.125" />
+        <EntityTypeShape EntityType="RealStateDataModel.InventoryUtlities" Width="1.5" PointX="8.25" PointY="14.5" />
+        <EntityTypeShape EntityType="RealStateDataModel.PropertyType" Width="1.5" PointX="0.75" PointY="12.125" />
+        <EntityTypeShape EntityType="RealStateDataModel.Reference" Width="1.5" PointX="3.75" PointY="17" />
+        <EntityTypeShape EntityType="RealStateDataModel.Room" Width="1.5" PointX="8.25" PointY="9.625" />
+        <EntityTypeShape EntityType="RealStateDataModel.SpecialLocation" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="RealStateDataModel.Utilities" Width="1.5" PointX="10.75" PointY="0.75" />
+        <AssociationConnector Association="RealStateDataModel.FK_Agent_User" />
+        <AssociationConnector Association="RealStateDataModel.FK_AL_Agent" />
+        <AssociationConnector Association="RealStateDataModel.FK_Inventory_Agent" />
+        <AssociationConnector Association="RealStateDataModel.FK_Area_Category" />
+        <AssociationConnector Association="RealStateDataModel.FK_Area_PropertyType" />
+        <AssociationConnector Association="RealStateDataModel.FK_Area_SpecialLocation" />
+        <AssociationConnector Association="RealStateDataModel.FK_AL_SL" />
+        <AssociationConnector Association="RealStateDataModel.FK_Inventory_Category" />
+        <AssociationConnector Association="RealStateDataModel.FK_Inventory_PropertyType" />
+        <AssociationConnector Association="RealStateDataModel.FK_Inventory_Reference" />
+        <AssociationConnector Association="RealStateDataModel.FK_InventoryUtility_Inventory" />
+        <AssociationConnector Association="RealStateDataModel.FK_InventoryUtility_Utility" />
+        <AssociationConnector Association="RealStateDataModel.FK_Room_Inventory" />
+        <AssociationConnector Association="RealStateDataModel.FK_Room_Room" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

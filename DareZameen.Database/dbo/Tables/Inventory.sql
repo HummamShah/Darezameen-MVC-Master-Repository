@@ -27,7 +27,9 @@
   Constraint [FK_Inventory_Agent] foreign key ([AgentId]) References [dbo].[Agent] ([Id]),
     Constraint [FK_Inventory_Reference] foreign key ([ReferenceId]) References [dbo].[Reference] ([Id]),
       Constraint [FK_Inventory_Category] foreign key ([CategoryId]) References [dbo].[Category] ([Id]),
-        Constraint [FK_Inventory_PropertyType] foreign key ([PropertyTypeId]) References [dbo].[PropertyType] ([Id])
+        Constraint [FK_Inventory_PropertyType] foreign key ([PropertyTypeId]) References [dbo].[PropertyType] ([Id]),
+           Constraint [FK_Inventory_SpecialLocation] foreign key ([SpecialLocationId]) References [dbo].[SpecialLocation] ([Id])
+
 
 )
 

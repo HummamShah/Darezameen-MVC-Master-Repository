@@ -30,5 +30,17 @@ namespace DareZameen_Web.Models
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Agent> Agent { get; set; }
+        public virtual DbSet<AreaWisePrice> AreaWisePrice { get; set; }
+        public virtual DbSet<AssignedLocation> AssignedLocation { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Images> Images { get; set; }
+        public virtual DbSet<Inventory> Inventory { get; set; }
+        public virtual DbSet<InventoryUtlities> InventoryUtlities { get; set; }
+        public virtual DbSet<PropertyType> PropertyType { get; set; }
+        public virtual DbSet<Reference> Reference { get; set; }
+        public virtual DbSet<Room> Room { get; set; }
+        public virtual DbSet<SpecialLocation> SpecialLocation { get; set; }
+        public virtual DbSet<Utilities> Utilities { get; set; }
     }
 }
