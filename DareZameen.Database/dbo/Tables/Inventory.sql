@@ -6,6 +6,7 @@
   [CategoryId] int null,
   [PropertyTypeId] int null,
   [Size] decimal(18,3),
+    [Number] nvarchar(max),
   [Address] nvarchar(max),
   [Demand] decimal (18,3),
   [Description] nvarchar(max),

@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div ng-controller="UserCtrl" ng-init="initIndex()">
+
+    <div class="row">
+        <div class="col-md-3">
+            <h2>Users List</h2>
+        </div>
+        <div class="col-md-9 ">
+            <a class="btn btn-primary pull-right" style=" margin-top: 20px;" href="/User/Add">Add</a>
+        </div>
+    </div>
+    <table class="table" width="100%">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Fisrt Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Contact
+            </th>
+            <th>
+                Designation
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Action
+            </th>
+
+        </tr>
+        <tr ng-repeat="User in Users">
+            <td>
+                {{User.Id}}
+            </td>
+            <td>
+                {{User.FirstName}}
+            </td>
+            <td>
+                {{User.LastName}}
+            </td>
+            <td>
+                {{User.Contact}}
+            </td>
+            <td>
+                {{User.Designation}}
+            </td>
+            <td>
+                {{User.ImageUrl}} @*Replace it with img tag*@
+            </td>
+           
+            <td>
+                <a href="/Inventory/Edit?Id={{User.UserId}}" title="Edit">E</a>
+                <a href="/Inventory/Details?Id={{User.UserId}}" title="Details">D</a>
+                <a href="/Inventory/Print?Id={{User.UserId}}" title="Print">P</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+

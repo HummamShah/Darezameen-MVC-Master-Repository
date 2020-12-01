@@ -46,6 +46,7 @@ namespace DareZameen_Web.Models
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedAt { get; set; }
         public string UpdatedBy { get; set; }
+        public string Number { get; set; }
     
         public virtual Agent Agent { get; set; }
         public virtual Category Category { get; set; }
@@ -57,5 +58,6 @@ namespace DareZameen_Web.Models
         public virtual ICollection<InventoryUtlities> InventoryUtlities1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Room> Room { get; set; }
+        public virtual SpecialLocation SpecialLocation { get; set; }
     }
 }

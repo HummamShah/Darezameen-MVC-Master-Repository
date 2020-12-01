@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DareZameen_Web.Models;
+using System.Collections.Generic;
 
 namespace DareZameen_Web.Controllers
 {
@@ -17,6 +18,7 @@ namespace DareZameen_Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private RealStateDataEntities db = new RealStateDataEntities();
 
         public AccountController()
         {
@@ -151,7 +153,7 @@ namespace DareZameen_Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email }; //We can put username field instead of email
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -171,6 +173,61 @@ namespace DareZameen_Web.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+
+
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<object> RegisterUser(RegisterUserViewModel model)
+        {
+
+            var response = new RegisterUserResponse();
+            if (ModelState.IsValid)
+            {
+                
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email }; //We can put username field instead of email
+                var result = await UserManager.CreateAsync(user, model.Password);
+                
+                if (result.Succeeded)
+                {
+                    var CurrentUserName = User.Identity.Name;
+                    var AgentData = new Agent();
+                    AgentData.UserId = user.Id;
+                    AgentData.FisrtName = model.FirstName;
+                    AgentData.LastName = model.LastName;
+                    AgentData.Address = model.Address;
+                    AgentData.Contact1 = model.Contact1;
+                    AgentData.Contact2 = model.Contact2;
+                    AgentData.CreatedAt = DateTime.Now;
+                    AgentData.CreatedBy = CurrentUserName;
+                    var AgentResult = db.Agent.Add(AgentData);
+
+                    response.Success = true;
+                    // await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return response;
+                }
+                response.Success = false;
+                response.ValidationErrors = (result.Errors);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return response;
+        }
+        public class RegisterUserResponse
+        {
+            public bool Success { get; set; }
+            public IEnumerable<string> ValidationErrors { get; set; }
+        }
+
 
         //
         // GET: /Account/ConfirmEmail

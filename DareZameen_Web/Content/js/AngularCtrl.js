@@ -42,3 +42,36 @@ app.controller('InventoryCtrl',
             }
         }
     ]); 
+
+app.controller('UserCtrl',
+    [
+        "$scope",
+        "$rootScope",
+        "$timeout",
+        "$q",
+        "$window",
+        "$http",
+        function ($scope, $rootScope, $timeout, $q, $window, $http) {
+            console.log("Connected to User App");
+            $scope.initIndex = function () {
+                var data = null;
+                var promise = $http.get("/api/UserApi/GetAllData", { params: data, headers: { 'Accept': 'application/json' } });
+                promise.then(
+                    function (response) {
+                        console.log(response);
+                        $scope.Users = response.data;
+                    });
+                // $scope.Inventories = $http.get("/api/InvenoryApi/GetAllData", { params: data, headers: { 'Accept': 'application/json' } });
+            }
+            $scope.AddUser = function (user) {
+                console.log(user);
+                var promise = $http.post("/api/UserApi/RegisterUser", { params: user, headers: { 'Accept': 'application/json' } });
+                promise.then(
+                    function (response) {
+                        console.log(response);
+                        
+                    });
+
+            }
+        }
+    ]);

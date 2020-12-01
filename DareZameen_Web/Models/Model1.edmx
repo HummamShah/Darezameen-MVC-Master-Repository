@@ -145,6 +145,7 @@
           <Property Name="CategoryId" Type="int" />
           <Property Name="PropertyTypeId" Type="int" />
           <Property Name="Size" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="Number" Type="nvarchar(max)" />
           <Property Name="Address" Type="nvarchar(max)" />
           <Property Name="Demand" Type="decimal" Precision="18" Scale="3" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -421,6 +422,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inventory_SpecialLocation">
+          <End Role="SpecialLocation" Type="Self.SpecialLocation" Multiplicity="0..1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpecialLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="SpecialLocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_InventoryUtility_Inventory">
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
           <End Role="InventoryUtlities" Type="Self.InventoryUtlities" Multiplicity="*" />
@@ -544,6 +557,10 @@
             <End Role="Reference" EntitySet="Reference" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inventory_SpecialLocation" Association="Self.FK_Inventory_SpecialLocation">
+            <End Role="SpecialLocation" EntitySet="SpecialLocation" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
           <AssociationSet Name="FK_InventoryUtility_Inventory" Association="Self.FK_InventoryUtility_Inventory">
             <End Role="Inventory" EntitySet="Inventory" />
             <End Role="InventoryUtlities" EntitySet="InventoryUtlities" />
@@ -660,6 +677,10 @@
           <AssociationSet Name="FK_Room_Room" Association="RealStateDataModel.FK_Room_Room">
             <End Role="Room" EntitySet="Room" />
             <End Role="Room1" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_SpecialLocation" Association="RealStateDataModel.FK_Inventory_SpecialLocation">
+            <End Role="SpecialLocation" EntitySet="SpecialLocation" />
+            <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRoles">
@@ -858,6 +879,8 @@
           <NavigationProperty Name="InventoryUtlities" Relationship="RealStateDataModel.FK_InventoryUtility_Inventory" FromRole="Inventory" ToRole="InventoryUtlities" />
           <NavigationProperty Name="InventoryUtlities1" Relationship="RealStateDataModel.FK_InventoryUtility_Utility" FromRole="Inventory" ToRole="InventoryUtlities" />
           <NavigationProperty Name="Room" Relationship="RealStateDataModel.FK_Room_Inventory" FromRole="Inventory" ToRole="Room" />
+          <Property Name="Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SpecialLocation" Relationship="RealStateDataModel.FK_Inventory_SpecialLocation" FromRole="Inventory" ToRole="SpecialLocation" />
         </EntityType>
         <EntityType Name="InventoryUtlities">
           <Key>
@@ -937,6 +960,7 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AreaWisePrice" Relationship="RealStateDataModel.FK_Area_SpecialLocation" FromRole="SpecialLocation" ToRole="AreaWisePrice" />
           <NavigationProperty Name="AssignedLocation" Relationship="RealStateDataModel.FK_AL_SL" FromRole="SpecialLocation" ToRole="AssignedLocation" />
+          <NavigationProperty Name="Inventory" Relationship="RealStateDataModel.FK_Inventory_SpecialLocation" FromRole="SpecialLocation" ToRole="Inventory" />
         </EntityType>
         <EntityType Name="Utilities">
           <Key>
@@ -1118,6 +1142,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inventory_SpecialLocation">
+          <End Type="RealStateDataModel.SpecialLocation" Role="SpecialLocation" Multiplicity="0..1" />
+          <End Type="RealStateDataModel.Inventory" Role="Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpecialLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="SpecialLocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1265,6 +1301,7 @@
           <EntitySetMapping Name="Inventory">
             <EntityTypeMapping TypeName="RealStateDataModel.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />

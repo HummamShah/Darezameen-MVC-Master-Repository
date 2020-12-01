@@ -19,6 +19,7 @@ namespace DareZameen_Web.Models
         {
             this.AreaWisePrice = new HashSet<AreaWisePrice>();
             this.AssignedLocation = new HashSet<AssignedLocation>();
+            this.Inventory = new HashSet<Inventory>();
         }
     
         public int Id { get; set; }
@@ -36,5 +37,7 @@ namespace DareZameen_Web.Models
         public virtual ICollection<AreaWisePrice> AreaWisePrice { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssignedLocation> AssignedLocation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Inventory> Inventory { get; set; }
     }
 }
