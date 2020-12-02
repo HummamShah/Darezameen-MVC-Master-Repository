@@ -10,6 +10,13 @@ app.controller('DemoCtrl',
         "$window",
         function ($scope, $rootScope, $timeout, $q, $window) {
             console.log("Connected to Demo App");
+            $scope.GetUrlParameter = function (param) {
+                const queryString = window.location.search;
+                console.log(queryString);
+                alert(queryString);
+                const urlParams = new URLSearchParams(queryString);
+                return urlParams.get(param);
+            }
         }
     ]);
 
@@ -72,6 +79,12 @@ app.controller('UserCtrl',
                         
                     });
 
+            }
+          
+            $scope.AddInit = function () {
+                $scope.Type = $scope.GetUrlParameter("Type");
+                console.log($scope.Type);
+                alert($scope.Type);
             }
         }
     ]);
