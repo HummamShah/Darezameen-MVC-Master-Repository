@@ -12,8 +12,6 @@ app.controller('DemoCtrl',
             console.log("Connected to Demo App");
             $scope.GetUrlParameter = function (param) {
                 const queryString = window.location.search;
-                console.log(queryString);
-                alert(queryString);
                 const urlParams = new URLSearchParams(queryString);
                 return urlParams.get(param);
             }
@@ -72,7 +70,7 @@ app.controller('UserCtrl',
             }
             $scope.AddUser = function (user) {
                 console.log(user);
-                var promise = $http.post("/api/UserApi/RegisterUser", { params: user, headers: { 'Accept': 'application/json' } });
+                var promise = $http.post("/api/UserApi/RegisterUser", user, {headers: { 'Accept': 'application/json' } });
                 promise.then(
                     function (response) {
                         console.log(response);
@@ -82,9 +80,9 @@ app.controller('UserCtrl',
             }
           
             $scope.AddInit = function () {
-                $scope.Type = $scope.GetUrlParameter("Type");
-                console.log($scope.Type);
-                alert($scope.Type);
+                //$scope.Type = $scope.GetUrlParameter("Type");
+                //console.log($scope.Type);
+                //alert($scope.Type);
             }
         }
     ]);
