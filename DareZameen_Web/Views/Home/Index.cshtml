@@ -1,13 +1,27 @@
-﻿@{
+﻿@using Microsoft.AspNet.Identity;
+@using UserRoles = DareZameen_Web.Models.Roles;
+@{
     ViewBag.Title = "Home Page";
+    var UserId = User.Identity.GetUserId();
 }
-<br /><br /><br />
+
+<br />
+<br />
+<br />
 <div class="row">
     <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
 
     </div>
     <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
-       <h2>Coming Soon! InsAllah</h2>
+        @if (User.IsInRole(UserRoles.Admin))
+        {
+            <h2>Welcom Admin <br />Coming Soon! InsAllah</h2>
+        }
+        @if (User.IsInRole(UserRoles.Inventory_Supplier))
+        {
+            <h2>Welcom Inventory Supplier <br />Coming Soon! InsAllah</h2>
+        }
+
     </div>
     <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
 

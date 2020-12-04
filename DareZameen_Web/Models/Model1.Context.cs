@@ -42,5 +42,7 @@ namespace DareZameen_Web.Models
         public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<SpecialLocation> SpecialLocation { get; set; }
         public virtual DbSet<Utilities> Utilities { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<UserRoles> UserRoles { get; set; }
     }
 }

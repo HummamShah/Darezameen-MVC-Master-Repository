@@ -250,6 +250,7 @@
     <Compile Include="Models\Enums\RoomType.cs" />
     <Compile Include="Models\FeatureClasses\AgentDataModel.cs" />
     <Compile Include="Models\FeatureClasses\InventoryDataModel.cs" />
+    <Compile Include="Models\Feature\User\GetListingRequest.cs" />
     <Compile Include="Models\Feature\User\IUserRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Images.cs">
@@ -283,6 +284,14 @@
     <Compile Include="Models\Reference.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Roles.cs" />
+    <Compile Include="Models\UserRoles.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebRoleProvider.cs" />
     <Compile Include="Models\Room.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

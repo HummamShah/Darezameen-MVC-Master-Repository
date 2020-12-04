@@ -39,6 +39,10 @@
         <AssociationConnector Association="RealStateDataModel.FK_InventoryUtility_Utility" />
         <AssociationConnector Association="RealStateDataModel.FK_Room_Inventory" />
         <AssociationConnector Association="RealStateDataModel.FK_Room_Room" />
+        <AssociationConnector Association="RealStateDataModel.FK_Inventory_SpecialLocation" />
+        <EntityTypeShape EntityType="RealStateDataModel.Role" Width="1.5" PointX="10.375" PointY="10.75" />
+        <EntityTypeShape EntityType="RealStateDataModel.UserRoles" Width="1.5" PointX="7.875" PointY="6.625" />
+        <AssociationConnector Association="RealStateDataModel.FK_UserRole_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

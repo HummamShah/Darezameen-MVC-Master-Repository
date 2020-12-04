@@ -32,6 +32,12 @@ namespace DareZameen_Web.Controllers.Api
             var temp = IUserRequest.GetListing();
             return temp;
         }
+        public object GetListData()
+        {
+            var temp = new GetListingRequest();
+            var result = temp.RunRequest();
+            return result;
+        }
         // POST: /Account/Register
         [System.Web.Http.HttpPost]
         [System.Web.Http.AllowAnonymous]

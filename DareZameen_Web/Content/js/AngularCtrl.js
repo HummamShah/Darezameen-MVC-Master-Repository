@@ -60,7 +60,7 @@ app.controller('UserCtrl',
             console.log("Connected to User App");
             $scope.initIndex = function () {
                 var data = null;
-                var promise = $http.get("/api/UserApi/GetAllData", { params: data, headers: { 'Accept': 'application/json' } });
+                var promise = $http.get("/api/UserApi/GetListData", { params: data, headers: { 'Accept': 'application/json' } });
                 promise.then(
                     function (response) {
                         console.log(response);

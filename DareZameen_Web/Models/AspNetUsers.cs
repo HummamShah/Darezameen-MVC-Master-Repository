@@ -21,6 +21,7 @@ namespace DareZameen_Web.Models
             this.AspNetUserLogins = new HashSet<AspNetUserLogins>();
             this.AspNetRoles = new HashSet<AspNetRoles>();
             this.Agent = new HashSet<Agent>();
+            this.UserRoles = new HashSet<UserRoles>();
         }
     
         public string Id { get; set; }
@@ -44,5 +45,7 @@ namespace DareZameen_Web.Models
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Agent> Agent { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserRoles> UserRoles { get; set; }
     }
 }
