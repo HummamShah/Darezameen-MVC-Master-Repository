@@ -226,6 +226,7 @@ namespace DareZameen_Web.Controllers
         {
             public bool Success { get; set; }
             public IEnumerable<string> ValidationErrors { get; set; }
+            public bool IsRoleAdded { get; set; } 
         }
 
 

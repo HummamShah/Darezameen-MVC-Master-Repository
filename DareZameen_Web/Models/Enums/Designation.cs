@@ -7,6 +7,6 @@ namespace DareZameen_Web.Models.Enums
 {
     public enum Designation
     {
-        InventorySupplier,SalesMan,SuperVisor,Desinger
+        InventorySupplier,SalesMan,Admin,Desinger,Leads
     }
 }

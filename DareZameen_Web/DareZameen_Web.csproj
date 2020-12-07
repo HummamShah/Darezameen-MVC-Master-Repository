@@ -251,7 +251,6 @@
     <Compile Include="Models\FeatureClasses\AgentDataModel.cs" />
     <Compile Include="Models\FeatureClasses\InventoryDataModel.cs" />
     <Compile Include="Models\Feature\User\GetListingRequest.cs" />
-    <Compile Include="Models\Feature\User\IUserRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Images.cs">
       <DependentUpon>Model1.tt</DependentUpon>

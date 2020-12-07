@@ -13,6 +13,7 @@ using static DareZameen_Web.Controllers.AccountController;
 using Microsoft.AspNet.Identity;
 using System.Web;
 using Microsoft.AspNet.Identity.Owin;
+using DareZameen_Web.Models.Enums;
 
 namespace DareZameen_Web.Controllers.Api
 {
@@ -20,6 +21,8 @@ namespace DareZameen_Web.Controllers.Api
     {
         private ApplicationUserManager _userManager;
         private RealStateDataEntities db = new RealStateDataEntities();
+        private static List<string> LeadsRoles = new List<string>(new string[] { Roles.Lead, Roles.Lead_Add, Roles.Lead_PreSales, Roles.Lead_Sales });
+        private static List<string> DesignerRoles = new List<string>(new string[] { Roles.Inventory_Supplier});
         public UserApiController()
         {
             _userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -27,24 +30,33 @@ namespace DareZameen_Web.Controllers.Api
         }
         // GET api/<controller>
         [System.Web.Http.HttpGet]
-        public object GetAllData()
-        {
-            var temp = IUserRequest.GetListing();
-            return temp;
-        }
+       
         public object GetListData()
         {
-            var temp = new GetListingRequest();
-            var result = temp.RunRequest();
+            var result = new object();
+            if (User.IsInRole(Roles.Admin))
+            {
+                var temp = new GetListingRequest();
+                result = temp.RunRequest();
+                
+            }
+            if (User.IsInRole(Roles.Inventory_Supplier))
+            {
+                var temp = new GetListingRequest();
+                result = temp.RunRequest();
+
+            }
             return result;
+
         }
         // POST: /Account/Register
         [System.Web.Http.HttpPost]
-        [System.Web.Http.AllowAnonymous]
+        [System.Web.Http.Authorize(Roles= "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<object> RegisterUser(RegisterUserViewModel model)
         {
             var response = new RegisterUserResponse();
+            var RolesToBeAdded = new List<string>();
             if (ModelState.IsValid && model.ConfirmPassword == model.Password)
             {
 
@@ -56,6 +68,7 @@ namespace DareZameen_Web.Controllers.Api
                     var CurrentUserName = User.Identity.Name;
                     var AgentData = new Agent();
                     AgentData.UserId = user.Id;
+                    AgentData.Designation = model.Designation;
                     AgentData.FisrtName = model.FirstName;
                     AgentData.LastName = model.LastName;
                     AgentData.Address = model.Address;
@@ -63,7 +76,31 @@ namespace DareZameen_Web.Controllers.Api
                     AgentData.Contact2 = model.Contact2;
                     AgentData.CreatedAt = DateTime.Now;
                     AgentData.CreatedBy = CurrentUserName;
+                    AgentData.Email = model.Email;
                     var AgentResult = db.Agent.Add(AgentData);
+
+
+
+                   
+                    if (AgentData.Designation == (int) Designation.Leads)
+                    {
+                        RolesToBeAdded = LeadsRoles;
+                    }
+                    if (AgentData.Designation == (int)Designation.Desinger)
+                    {
+                        RolesToBeAdded = DesignerRoles;
+                    }
+
+                    var RoleResult = await _userManager.AddToRolesAsync(user.Id, RolesToBeAdded.ToArray());
+                    if (RoleResult.Succeeded)
+                    {
+                        response.IsRoleAdded = true;
+                    }
+                    else
+                    {
+                        response.IsRoleAdded = false;
+                    }
+                    
                     db.SaveChanges();
                     response.Success = true;
                     // await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);

@@ -64,7 +64,7 @@ app.controller('UserCtrl',
                 promise.then(
                     function (response) {
                         console.log(response);
-                        $scope.Users = response.data;
+                        $scope.Users = response.data.Data;
                     });
                 // $scope.Inventories = $http.get("/api/InvenoryApi/GetAllData", { params: data, headers: { 'Accept': 'application/json' } });
             }
